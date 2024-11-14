@@ -2,14 +2,15 @@ const express = require("express")
 const router = express.Router()
 const modelPedido = require("../../model/modelPedidos")
 
-router.put('/:id', async (req, res) =>{
+router.put('/:id', async (req, res) => {
     const id = req.params.id
-    try{
-        const updateData = await modelPedido.findByIdAndUpdate(id, {new:true})
-        res.json(updateData)
-    }
-    catch(error){
-        res.status(400).json({message:error.message})
+    const updateData = req.body  // Dados a serem atualizados
+
+    try {
+        const updatedPedido = await modelPedido.findByIdAndUpdate(id, updateData, { new: true })
+        res.json(updatedPedido)
+    } catch (error) {
+        res.status(400).json({ message: error.message })
     }
 })
 
