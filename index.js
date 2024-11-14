@@ -8,12 +8,11 @@ const usersRoutes = require("./routes/users")
 const postCardapio = require("./routes/cardapio/post")
 const postPedido = require("./routes/pedidos/post")
 const getCardapio = require("./routes/cardapio/get")
-const bodyParser = require("body-parser")
 const deleteCardapio = require("./routes/cardapio/delete")
 const getPedidos = require("./routes/pedidos/get")
 const deletePedidos = require("./routes/pedidos/delete")
 const updatePedido = require("./routes/pedidos/update")
-
+const cors = require("cors");
 
 //import dotenv from 'dotenv';
 //import usersRoutes from "./routes/users.js"
@@ -21,17 +20,14 @@ const updatePedido = require("./routes/pedidos/update")
 
 
 const app = express();
+
 const PORT = 5000;
 const mongoString = process.env.DATABASE_URL
 
-app.use(bodyParser.json());
+app.use(express.json())
+app.use(cors())
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-    res.header("Access-Control-Allow-Headers", "Content-Type");
-    next();
-});
+
 
 mongoose.connect(mongoString)
 const database = mongoose.connection
