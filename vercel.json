@@ -1,6 +1,5 @@
 { 
     "version": 2, 
-    "rewrites": [{ "source": "./index.js", "destination": "/" }] ,
-    "routes" : [{"src": "/(.*)", "des": "/"}]
+    "rewrites": [{ "source": "./index.js", "destination": "/" }] 
 
 }
